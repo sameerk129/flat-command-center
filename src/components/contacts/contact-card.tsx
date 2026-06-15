@@ -23,13 +23,13 @@ export function ContactCard({ contact, delay = 0 }: { contact: Contact; delay?: 
         layout
       >
         <Card className="p-5 h-full flex flex-col gap-3">
-          <div className="flex items-start justify-between">
-            <div className="flex items-center gap-3">
-              <div className="h-11 w-11 rounded-2xl flex items-center justify-center text-xl bg-gradient-to-br from-white/[0.08] to-white/[0.03] border border-white/[0.08]">
+          <div className="flex items-start justify-between gap-2">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="h-11 w-11 rounded-2xl flex items-center justify-center text-xl bg-gradient-to-br from-white/[0.08] to-white/[0.03] border border-white/[0.08] shrink-0">
                 {contact.emoji ?? "📞"}
               </div>
-              <div>
-                <div className="text-[15px] font-semibold tracking-tight text-white">
+              <div className="min-w-0">
+                <div className="text-[15px] font-semibold tracking-tight text-white truncate">
                   {contact.name}
                 </div>
                 <Badge variant="outline" className="mt-1">
@@ -37,7 +37,7 @@ export function ContactCard({ contact, delay = 0 }: { contact: Contact; delay?: 
                 </Badge>
               </div>
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 shrink-0">
               <Button size="icon" variant="ghost" onClick={() => setEditing(true)} aria-label="Edit">
                 <Pencil className="h-3.5 w-3.5" />
               </Button>

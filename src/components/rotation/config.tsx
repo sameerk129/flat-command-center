@@ -43,13 +43,14 @@ export function RotationConfig() {
   };
 
   return (
-    <Card className="p-5 sm:p-6">
-      <div className="flex items-center justify-between mb-5">
-        <div>
+    <Card className="p-4 sm:p-6">
+      <div className="flex items-center justify-between mb-4 sm:mb-5 gap-2">
+        <div className="min-w-0">
           <div className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/45 flex items-center gap-1.5">
-            <Repeat className="h-3 w-3" /> Rotation Configuration
+            <Repeat className="h-3 w-3 shrink-0" />
+            <span className="truncate">Rotation Configuration</span>
           </div>
-          <div className="text-lg font-semibold tracking-tight mt-1">
+          <div className="text-base sm:text-lg font-semibold tracking-tight mt-0.5 sm:mt-1">
             Cadence & order
           </div>
         </div>

@@ -35,7 +35,11 @@ export function UpcomingTimeline() {
           aria-hidden
           className="absolute left-0 right-0 top-7 h-px bg-gradient-to-r from-transparent via-white/[0.12] to-transparent hidden sm:block"
         />
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 sm:gap-4">
+        <div
+          aria-hidden
+          className="absolute left-[19px] top-2 bottom-2 w-px bg-gradient-to-b from-white/[0.04] via-white/[0.12] to-white/[0.04] sm:hidden"
+        />
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-2.5 sm:gap-4">
           {items.map((item, i) => {
             const m = memberById(item.memberId);
             const isCurrent = i === 0;
@@ -58,15 +62,24 @@ export function UpcomingTimeline() {
                     }}
                   />
                 </div>
+                <span
+                  aria-hidden
+                  className="sm:hidden absolute left-[14px] top-5 h-2.5 w-2.5 rounded-full ring-4 z-10"
+                  style={{
+                    background: m.color,
+                    boxShadow: `0 0 10px 1px ${m.color}99`,
+                    ["--tw-ring-color" as never]: "rgba(7,7,11,1)",
+                  }}
+                />
                 <div
-                  className={`mt-0 sm:mt-10 rounded-2xl border p-4 hover-lift ${
+                  className={`ml-10 sm:ml-0 sm:mt-10 rounded-xl sm:rounded-2xl border p-3.5 sm:p-4 hover-lift ${
                     isCurrent
                       ? "border-white/[0.14] bg-white/[0.05]"
                       : "border-white/[0.06] bg-white/[0.025]"
                   }`}
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-semibold tracking-[0.18em] uppercase text-white/45">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[10px] font-semibold tracking-[0.18em] uppercase text-white/45 truncate">
                       {LABELS[i] ?? `Future +${i}`}
                     </span>
                     {isCurrent ? (
@@ -77,13 +90,13 @@ export function UpcomingTimeline() {
                       </Badge>
                     )}
                   </div>
-                  <div className="mt-3 flex items-center gap-3">
+                  <div className="mt-2.5 sm:mt-3 flex items-center gap-3">
                     <MemberAvatar id={m.id} size="sm" />
                     <div className="min-w-0">
                       <div className="text-sm font-medium text-white truncate">
                         {m.name}
                       </div>
-                      <div className="text-[11px] text-white/45">
+                      <div className="text-[11px] text-white/45 truncate">
                         {formatDate(item.start, { month: "short", day: "numeric" })} →{" "}
                         {formatDate(item.end, { month: "short", day: "numeric" })}
                       </div>

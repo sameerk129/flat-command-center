@@ -31,8 +31,8 @@ export function DistributionChart() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-[1fr_180px] gap-4 items-center">
-        <div className="h-[240px] relative">
+      <div className="grid grid-cols-1 sm:grid-cols-[1fr_180px] gap-3 sm:gap-4 items-center">
+        <div className="h-[220px] sm:h-[240px] relative">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <defs>

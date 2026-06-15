@@ -224,3 +224,23 @@ body {
 @keyframes pop-out { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.96); } }
 .popover-content[data-state="open"] { animation: pop-in 160ms ease-out; }
 .popover-content[data-state="closed"] { animation: pop-out 120ms ease-out; }
+
+/* Row actions: hidden until hover on devices that support hover.
+   Always visible on touch devices (mobile / tablet) where there's no hover. */
+.row-actions {
+  opacity: 1;
+}
+@media (hover: hover) and (pointer: fine) {
+  .row-actions {
+    opacity: 0;
+    transition: opacity 180ms ease;
+  }
+  .row-actions-host:hover .row-actions,
+  .row-actions:focus-within {
+    opacity: 1;
+  }
+}
+
+/* iOS safe area helpers */
+.safe-bottom { padding-bottom: max(env(safe-area-inset-bottom, 0px), 0px); }
+.safe-top { padding-top: max(env(safe-area-inset-top, 0px), 0px); }

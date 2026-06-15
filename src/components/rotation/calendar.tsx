@@ -49,17 +49,17 @@ export function RotationCalendar() {
   });
 
   return (
-    <Card className="p-5 sm:p-6">
-      <div className="flex items-center justify-between mb-5">
-        <div>
+    <Card className="p-4 sm:p-6">
+      <div className="flex items-center justify-between mb-4 sm:mb-5 gap-2">
+        <div className="min-w-0">
           <div className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/45">
             Monthly Calendar
           </div>
-          <div className="text-lg font-semibold tracking-tight mt-1">
+          <div className="text-base sm:text-lg font-semibold tracking-tight mt-0.5 sm:mt-1 truncate">
             {monthLabel}
           </div>
         </div>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 shrink-0">
           <Button
             size="icon"
             variant="ghost"
@@ -90,15 +90,16 @@ export function RotationCalendar() {
         </div>
       </div>
 
-      <div className="grid grid-cols-7 text-[10px] font-semibold tracking-[0.18em] uppercase text-white/40 mb-2">
+      <div className="grid grid-cols-7 text-[9px] sm:text-[10px] font-semibold tracking-[0.14em] sm:tracking-[0.18em] uppercase text-white/40 mb-1.5 sm:mb-2">
         {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => (
-          <div key={d} className="px-1 py-1.5 text-center">
-            {d}
+          <div key={d} className="px-0.5 sm:px-1 py-1 sm:py-1.5 text-center">
+            <span className="sm:hidden">{d[0]}</span>
+            <span className="hidden sm:inline">{d}</span>
           </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-7 gap-1.5 sm:gap-2">
+      <div className="grid grid-cols-7 gap-1 sm:gap-2">
         {grid.map((d, idx) => {
           const inMonth = d.getMonth() === cursor.getMonth();
           const isToday = d.getTime() === today.getTime();
@@ -117,7 +118,7 @@ export function RotationCalendar() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: idx * 0.005 }}
               className={cn(
-                "relative rounded-xl border min-h-[64px] sm:min-h-[78px] p-1.5 sm:p-2 overflow-hidden",
+                "relative rounded-lg sm:rounded-xl border min-h-[52px] sm:min-h-[78px] p-1 sm:p-2 overflow-hidden",
                 inMonth ? "border-white/[0.06] bg-white/[0.02]" : "border-white/[0.03] bg-transparent",
                 isToday && "ring-1 ring-[#a855f7]/40"
               )}
@@ -130,7 +131,7 @@ export function RotationCalendar() {
               <div className="flex items-center justify-between">
                 <span
                   className={cn(
-                    "text-[11px] font-medium",
+                    "text-[10px] sm:text-[11px] font-medium leading-none",
                     inMonth ? "text-white/75" : "text-white/30",
                     isToday && "text-white"
                   )}
@@ -138,26 +139,27 @@ export function RotationCalendar() {
                   {d.getDate()}
                 </span>
                 {isHandoverStart && inMonth && (
-                  <Dot className="h-3 w-3" style={{ color: m.color }} />
+                  <Dot className="h-2.5 w-2.5 sm:h-3 sm:w-3 -m-1" style={{ color: m.color }} />
                 )}
               </div>
-              <div className="mt-1.5 flex items-center gap-1">
+              <div className="mt-1 sm:mt-1.5 flex items-center gap-1">
                 <span
                   className="h-1.5 w-1.5 rounded-full shrink-0"
                   style={{ background: m.color, boxShadow: `0 0 6px ${m.color}77` }}
                 />
                 <span
                   className={cn(
-                    "text-[10px] sm:text-[11px] truncate",
+                    "text-[9px] sm:text-[11px] truncate leading-none",
                     inMonth ? "text-white/65" : "text-white/30"
                   )}
                 >
-                  {m.name.split(" ")[0]}
+                  <span className="sm:hidden">{m.name.slice(0, 3)}</span>
+                  <span className="hidden sm:inline">{m.name.split(" ")[0]}</span>
                 </span>
               </div>
               {isToday && (
-                <span className="absolute bottom-1 right-1 text-[9px] font-semibold tracking-wider uppercase text-[#c4b5fd]">
-                  Today
+                <span className="absolute bottom-0.5 right-0.5 sm:bottom-1 sm:right-1 text-[8px] sm:text-[9px] font-semibold tracking-wider uppercase text-[#c4b5fd]">
+                  Now
                 </span>
               )}
             </motion.div>
@@ -165,17 +167,19 @@ export function RotationCalendar() {
         })}
       </div>
 
-      <div className="mt-5 flex flex-wrap items-center gap-3 text-[11px]">
-        <span className="text-white/45">Legend</span>
-        {MEMBERS.map((m) => (
-          <div key={m.id} className="flex items-center gap-1.5">
-            <span
-              className="h-2 w-2 rounded-full"
-              style={{ background: m.color, boxShadow: `0 0 6px ${m.color}77` }}
-            />
-            <span className="text-white/65">{m.name}</span>
-          </div>
-        ))}
+      <div className="mt-4 sm:mt-5 -mx-1 sm:mx-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex items-center gap-2 sm:gap-3 px-1 sm:px-0 text-[11px] w-max sm:w-auto sm:flex-wrap">
+          <span className="text-white/45 shrink-0">Legend</span>
+          {MEMBERS.map((m) => (
+            <div key={m.id} className="flex items-center gap-1.5 shrink-0">
+              <span
+                className="h-2 w-2 rounded-full"
+                style={{ background: m.color, boxShadow: `0 0 6px ${m.color}77` }}
+              />
+              <span className="text-white/65 whitespace-nowrap">{m.name}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </Card>
   );

@@ -75,26 +75,26 @@ export function EasterEggModal() {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 10 }}
             transition={{ type: "spring", damping: 18, stiffness: 220 }}
-            className="relative max-w-md w-full glass-elevated rounded-3xl p-8 text-center gradient-border"
+            className="relative max-w-md w-full glass-elevated rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-center gradient-border"
           >
             <motion.div
               animate={{ rotate: [0, -8, 8, -4, 0] }}
               transition={{ duration: 1.4, repeat: Infinity, repeatDelay: 1.2 }}
-              className="mx-auto w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br from-[#a855f7] to-[#6366f1] shadow-[0_20px_60px_-20px_rgba(168,85,247,0.8)]"
+              className="mx-auto w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br from-[#a855f7] to-[#6366f1] shadow-[0_20px_60px_-20px_rgba(168,85,247,0.8)]"
             >
-              <Rocket className="w-8 h-8 text-white" />
+              <Rocket className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
             </motion.div>
-            <h2 className="mt-5 text-2xl font-semibold tracking-tight">
+            <h2 className="mt-4 sm:mt-5 text-xl sm:text-2xl font-semibold tracking-tight leading-tight">
               <span className="gradient-text">2164 Mission Control</span>
               <br />
               <span className="text-white">Activated</span>
               <span className="ml-1">🚀</span>
             </h2>
-            <p className="mt-3 text-sm text-white/60 leading-relaxed">
+            <p className="mt-2.5 sm:mt-3 text-[13px] sm:text-sm text-white/60 leading-relaxed">
               You found the secret handshake. The house thanks you for your{" "}
               <span className="text-white">superior on-call energy</span>.
             </p>
-            <div className="mt-5 flex items-center justify-center gap-3">
+            <div className="mt-4 sm:mt-5 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2 sm:gap-3">
               <Button variant="primary" onClick={() => { fireConfetti(); }}>
                 <Sparkles className="w-4 h-4" /> More confetti
               </Button>

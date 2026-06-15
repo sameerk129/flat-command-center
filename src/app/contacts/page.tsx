@@ -58,46 +58,48 @@ export default function ContactsPage() {
         title="People who keep 2164 running"
         description="The plumber, the electrician, the hospital. Tap to call or copy a number — never panic again."
         actions={
-          <div className="flex items-center gap-2">
-            <div className="relative">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+            <div className="relative flex-1 sm:flex-none">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
               <Input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search contacts…"
-                className="pl-9 w-56"
+                className="pl-9 w-full sm:w-56"
               />
             </div>
-            <Button variant="primary" onClick={() => setOpen(true)}>
+            <Button variant="primary" onClick={() => setOpen(true)} className="w-full sm:w-auto">
               <Plus className="h-4 w-4" /> Add contact
             </Button>
           </div>
         }
       />
 
-      <div className="flex flex-wrap items-center gap-1.5 mb-5">
-        {categories.map((c) => {
-          const active = filter === c;
-          return (
-            <button
-              key={c}
-              onClick={() => setFilter(c)}
-              className={cn(
-                "px-3 py-1.5 rounded-full text-xs font-medium border transition",
-                active
-                  ? "border-[#a855f7]/40 bg-[#a855f7]/12 text-[#d8b4fe]"
-                  : "border-white/[0.08] bg-white/[0.025] text-white/65 hover:text-white"
-              )}
-            >
-              {c}
-              {c !== "All" && (
-                <Badge variant="outline" className="ml-2 text-[10px]">
-                  {contacts.filter((x) => x.category === c).length}
-                </Badge>
-              )}
-            </button>
-          );
-        })}
+      <div className="-mx-4 sm:mx-0 px-4 sm:px-0 mb-5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex items-center gap-1.5 w-max sm:w-auto sm:flex-wrap">
+          {categories.map((c) => {
+            const active = filter === c;
+            return (
+              <button
+                key={c}
+                onClick={() => setFilter(c)}
+                className={cn(
+                  "shrink-0 px-3 py-1.5 rounded-full text-xs font-medium border transition whitespace-nowrap",
+                  active
+                    ? "border-[#a855f7]/40 bg-[#a855f7]/12 text-[#d8b4fe]"
+                    : "border-white/[0.08] bg-white/[0.025] text-white/65 hover:text-white"
+                )}
+              >
+                {c}
+                {c !== "All" && (
+                  <Badge variant="outline" className="ml-2 text-[10px]">
+                    {contacts.filter((x) => x.category === c).length}
+                  </Badge>
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">

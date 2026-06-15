@@ -57,16 +57,16 @@ export function Onboarding() {
           initial={{ opacity: 0, y: 12, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ type: "spring", damping: 22, stiffness: 240 }}
-          className="relative w-full max-w-xl glass-elevated rounded-3xl p-8 gradient-border overflow-hidden"
+          className="relative w-full max-w-xl glass-elevated rounded-2xl sm:rounded-3xl p-5 sm:p-8 gradient-border overflow-hidden"
         >
           <div aria-hidden className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-[#a855f7]/30 blur-3xl" />
           <div aria-hidden className="absolute -bottom-32 -left-20 h-72 w-72 rounded-full bg-[#22d3ee]/25 blur-3xl" />
 
           <div className="relative flex items-center gap-3">
-            <div className="h-11 w-11 rounded-2xl flex items-center justify-center bg-gradient-to-br from-[#a855f7] to-[#6366f1] shadow-[0_15px_40px_-15px_rgba(168,85,247,0.6)]">
+            <div className="h-10 w-10 sm:h-11 sm:w-11 rounded-2xl flex items-center justify-center bg-gradient-to-br from-[#a855f7] to-[#6366f1] shadow-[0_15px_40px_-15px_rgba(168,85,247,0.6)] shrink-0">
               <Active className="h-5 w-5 text-white" />
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="text-[10px] font-semibold tracking-[0.18em] uppercase text-white/45">
                 Step {step + 1} of {STEPS.length}
               </div>
@@ -79,12 +79,12 @@ export function Onboarding() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25 }}
-            className="relative mt-6"
+            className="relative mt-5 sm:mt-6"
           >
-            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight leading-tight">
               <span className="gradient-text">{STEPS[step].title}</span>
             </h1>
-            <p className="mt-3 text-sm text-white/65 leading-relaxed max-w-[40ch]">
+            <p className="mt-2.5 sm:mt-3 text-[13px] sm:text-sm text-white/65 leading-relaxed max-w-[40ch]">
               {STEPS[step].body}
             </p>
           </motion.div>
@@ -124,25 +124,26 @@ export function Onboarding() {
             ))}
           </div>
 
-          <div className="relative mt-6 flex items-center justify-between gap-3">
+          <div className="relative mt-6 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-3">
             <Button
               variant="ghost"
               onClick={() => setOnboarded(true)}
-              className="text-white/55"
+              className="text-white/55 sm:flex-none"
             >
               Skip intro
             </Button>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 sm:gap-2">
               {step > 0 && (
-                <Button variant="secondary" onClick={() => setStep(step - 1)}>
+                <Button variant="secondary" onClick={() => setStep(step - 1)} className="flex-1 sm:flex-none">
                   Back
                 </Button>
               )}
               <Button
                 variant="primary"
                 onClick={() => (last ? setOnboarded(true) : setStep(step + 1))}
+                className="flex-1 sm:flex-none"
               >
-                {last ? "Enter command center" : "Continue"}
+                {last ? "Enter" : "Continue"}
               </Button>
             </div>
           </div>

@@ -42,7 +42,7 @@ export default function RunbookPage() {
         title="Weekly & monthly checklist"
         description="A living runbook for the things the on-call SRE keeps an eye on. Like an incident playbook, but for the house."
         actions={
-          <Button variant="primary" onClick={() => setOpen(true)}>
+          <Button variant="primary" onClick={() => setOpen(true)} className="w-full sm:w-auto">
             <Plus className="h-4 w-4" /> Add duty
           </Button>
         }
@@ -54,17 +54,17 @@ export default function RunbookPage() {
         className="mb-6"
       >
         <Card className="p-5 sm:p-6">
-          <div className="flex items-end justify-between gap-4 flex-wrap">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
             <div>
               <div className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/45">
                 Overall progress
               </div>
-              <div className="text-2xl font-semibold tracking-tight mt-1">
+              <div className="text-xl sm:text-2xl font-semibold tracking-tight mt-1">
                 <span className="gradient-text">{done}</span>
-                <span className="text-white/45 text-lg"> / {total} duties complete</span>
+                <span className="text-white/45 text-base sm:text-lg"> / {total} duties complete</span>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <Badge variant="primary">Weekly · {weekly.filter((d) => d.done).length}/{weekly.length}</Badge>
               <Badge variant="cyan">Monthly · {monthly.filter((d) => d.done).length}/{monthly.length}</Badge>
             </div>

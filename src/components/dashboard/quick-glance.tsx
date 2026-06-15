@@ -48,7 +48,7 @@ export function QuickGlance() {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4">
       {tiles.map((t, i) => (
         <motion.div
           key={t.href}

@@ -52,17 +52,19 @@ export function ManualOverride() {
   };
 
   return (
-    <Card className="p-5 sm:p-6">
-      <div className="flex items-center justify-between mb-5 gap-3 flex-wrap">
+    <Card className="p-4 sm:p-6">
+      <div className="flex items-center justify-between mb-4 sm:mb-5 gap-3 flex-wrap">
         <div>
           <div className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/45 flex items-center gap-1.5">
             <ArrowRightLeft className="h-3 w-3" /> Manual Override
           </div>
-          <div className="text-lg font-semibold tracking-tight mt-1">
-            Drag a card onto another to swap
+          <div className="text-base sm:text-lg font-semibold tracking-tight mt-1">
+            <span className="hidden sm:inline">Drag a card onto another to swap</span>
+            <span className="sm:hidden">Swap or assign a week</span>
           </div>
           <p className="text-[11px] text-white/45 mt-0.5">
-            Useful when someone is travelling, sick, or trading favors.
+            <span className="hidden sm:inline">Useful when someone is travelling, sick, or trading favors.</span>
+            <span className="sm:hidden">Tap the dropdown to assign someone for that week.</span>
           </p>
         </div>
       </div>
@@ -125,36 +127,34 @@ export function ManualOverride() {
                 </div>
               </div>
 
-              <div className="mt-3 flex items-center justify-between">
-                <span className="text-[10px] text-white/35 inline-flex items-center gap-1.5">
-                  <span className="text-white/45">Swap with</span>
-                  <select
-                    onChange={(e) => {
-                      const targetMember = e.target.value as (typeof MEMBERS)[number]["id"];
-                      if (!targetMember) return;
-                      setOverride(p.index, targetMember);
-                      toast.success(`Assigned ${memberById(targetMember).name} to this period`);
-                      e.currentTarget.value = "";
-                    }}
-                    defaultValue=""
-                    className="bg-white/[0.06] border border-white/10 rounded-md text-[10px] px-1.5 py-0.5 text-white/85"
-                  >
-                    <option value="" disabled>
-                      pick…
+              <div className="mt-3 flex items-center gap-2 flex-wrap">
+                <label className="text-[10px] text-white/45 shrink-0">Assign</label>
+                <select
+                  onChange={(e) => {
+                    const targetMember = e.target.value as (typeof MEMBERS)[number]["id"];
+                    if (!targetMember) return;
+                    setOverride(p.index, targetMember);
+                    toast.success(`Assigned ${memberById(targetMember).name} to this period`);
+                    e.currentTarget.value = "";
+                  }}
+                  defaultValue=""
+                  className="bg-white/[0.06] border border-white/10 rounded-md text-[11px] px-2 py-1 text-white/85 flex-1 min-w-0"
+                >
+                  <option value="" disabled>
+                    pick member…
+                  </option>
+                  {MEMBERS.map((mm) => (
+                    <option key={mm.id} value={mm.id}>
+                      {mm.name}
                     </option>
-                    {MEMBERS.map((mm) => (
-                      <option key={mm.id} value={mm.id}>
-                        {mm.name}
-                      </option>
-                    ))}
-                  </select>
-                </span>
+                  ))}
+                </select>
                 {isOverridden ? (
-                  <Badge variant="primary" className="text-[10px]">
+                  <Badge variant="primary" className="text-[10px] shrink-0">
                     <RotateCcw className="h-3 w-3" /> Override
                   </Badge>
                 ) : (
-                  <span className="text-[10px] text-white/35">Default</span>
+                  <span className="text-[10px] text-white/35 shrink-0">Default</span>
                 )}
               </div>
             </div>

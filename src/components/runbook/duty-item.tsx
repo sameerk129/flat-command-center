@@ -23,7 +23,7 @@ export function DutyItem({ duty, delay = 0 }: { duty: Duty; delay?: number }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay }}
         className={cn(
-          "group flex items-start gap-3 px-4 py-3.5 rounded-xl border bg-white/[0.025] hover:border-white/[0.14] transition-all",
+          "row-actions-host group flex items-start gap-3 px-3 sm:px-4 py-3 sm:py-3.5 rounded-xl border bg-white/[0.025] hover:border-white/[0.14] transition-all",
           duty.done
             ? "border-emerald-400/15 bg-emerald-400/[0.04]"
             : "border-white/[0.06]"
@@ -67,7 +67,7 @@ export function DutyItem({ duty, delay = 0 }: { duty: Duty; delay?: number }) {
             </p>
           )}
         </div>
-        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition">
+        <div className="row-actions flex items-center gap-1 shrink-0">
           <Button size="icon" variant="ghost" onClick={() => setEditing(true)} aria-label="Edit">
             <Pencil className="h-3.5 w-3.5" />
           </Button>

@@ -47,13 +47,13 @@ export default function TeamPage() {
         title="The 2164 crew"
         description="Quick access to phones, emergency contacts, and personal notes. Everything edits inline and saves locally."
         actions={
-          <div className="relative">
+          <div className="relative w-full sm:w-64">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
             <Input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search members…"
-              className="pl-9 w-64"
+              className="pl-9 w-full"
             />
           </div>
         }

@@ -50,7 +50,7 @@ export function CommandPalette() {
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-[70] flex items-start justify-center pt-[12vh] px-4"
+          className="fixed inset-0 z-[70] flex items-start justify-center pt-[8vh] sm:pt-[12vh] px-3 sm:px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -78,7 +78,7 @@ export function CommandPalette() {
                   ESC
                 </kbd>
               </div>
-              <Command.List className="max-h-[60vh] overflow-y-auto p-2">
+              <Command.List className="max-h-[65dvh] sm:max-h-[60vh] overflow-y-auto overscroll-contain p-2">
                 <Command.Empty className="px-3 py-8 text-center text-sm text-white/45">
                   No matches. Try a different search.
                 </Command.Empty>
@@ -94,10 +94,12 @@ export function CommandPalette() {
                       onSelect={run(() => router.push(item.href as never))}
                       className="group flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-white/75 cursor-pointer data-[selected=true]:bg-white/[0.06] data-[selected=true]:text-white"
                     >
-                      <item.icon className="h-4 w-4 text-white/55" />
-                      <span className="flex-1">{item.label}</span>
-                      <span className="text-[11px] text-white/40">{item.description}</span>
-                      <ArrowRight className="h-3.5 w-3.5 text-white/30 opacity-0 group-data-[selected=true]:opacity-100" />
+                      <item.icon className="h-4 w-4 text-white/55 shrink-0" />
+                      <span className="flex-1 truncate">{item.label}</span>
+                      <span className="hidden sm:inline text-[11px] text-white/40 truncate max-w-[200px]">
+                        {item.description}
+                      </span>
+                      <ArrowRight className="h-3.5 w-3.5 text-white/30 opacity-0 group-data-[selected=true]:opacity-100 shrink-0" />
                     </Command.Item>
                   ))}
                 </Command.Group>

@@ -27,7 +27,7 @@ export default function RotationPage() {
         title="Who's on next?"
         description="Visualize the rotation, tweak the cadence, and drag-and-drop to swap weeks between roommates."
       />
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-5 lg:gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-4 sm:gap-5 lg:gap-6 mb-5 sm:mb-6">
         <RotationCalendar />
         <RotationConfig />
       </div>

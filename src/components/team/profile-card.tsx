@@ -42,15 +42,15 @@ export function ProfileCard({ profile, delay = 0 }: { profile: MemberProfile; de
         />
         <div aria-hidden className="absolute -top-12 -right-10 h-32 w-32 rounded-full blur-3xl opacity-40" style={{ background: m.color }} />
 
-        <div className="relative px-5 sm:px-6 pt-6 pb-5">
-          <div className="flex items-start justify-between">
-            <div className="flex items-center gap-4">
+        <div className="relative px-5 sm:px-6 pt-5 sm:pt-6 pb-5">
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex items-center gap-3 sm:gap-4 min-w-0">
               <MemberAvatar id={profile.id} size="lg" ring />
-              <div>
-                <div className="text-lg font-semibold text-white tracking-tight">
+              <div className="min-w-0">
+                <div className="text-base sm:text-lg font-semibold text-white tracking-tight truncate">
                   {profile.name}
                 </div>
-                <div className="text-xs text-white/55 mt-0.5">{profile.role}</div>
+                <div className="text-xs text-white/55 mt-0.5 truncate">{profile.role}</div>
                 <div className="mt-1.5">
                   <Badge variant="primary" className="text-[10px]">
                     <span className="h-1.5 w-1.5 rounded-full" style={{ background: m.color }} />
@@ -60,15 +60,59 @@ export function ProfileCard({ profile, delay = 0 }: { profile: MemberProfile; de
               </div>
             </div>
             {!editing ? (
-              <Button size="sm" variant="secondary" onClick={() => { setDraft(profile); setEditing(true); }}>
+              <Button
+                size="icon"
+                variant="secondary"
+                onClick={() => { setDraft(profile); setEditing(true); }}
+                aria-label="Edit profile"
+                className="shrink-0 sm:hidden"
+              >
+                <NotebookPen className="h-3.5 w-3.5" />
+              </Button>
+            ) : null}
+            {!editing ? (
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => { setDraft(profile); setEditing(true); }}
+                className="hidden sm:inline-flex"
+              >
                 <NotebookPen className="h-3.5 w-3.5" /> Edit
               </Button>
             ) : (
-              <div className="flex items-center gap-1">
-                <Button size="sm" variant="ghost" onClick={() => setEditing(false)}>
+              <div className="flex items-center gap-1 shrink-0">
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => setEditing(false)}
+                  aria-label="Cancel"
+                  className="sm:hidden"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </Button>
+                <Button
+                  size="icon"
+                  variant="primary"
+                  onClick={save}
+                  aria-label="Save"
+                  className="sm:hidden"
+                >
+                  <Save className="h-3.5 w-3.5" />
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => setEditing(false)}
+                  className="hidden sm:inline-flex"
+                >
                   <X className="h-3.5 w-3.5" /> Cancel
                 </Button>
-                <Button size="sm" variant="primary" onClick={save}>
+                <Button
+                  size="sm"
+                  variant="primary"
+                  onClick={save}
+                  className="hidden sm:inline-flex"
+                >
                   <Save className="h-3.5 w-3.5" /> Save
                 </Button>
               </div>

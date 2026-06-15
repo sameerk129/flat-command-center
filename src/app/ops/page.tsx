@@ -43,13 +43,14 @@ export default function OpsPage() {
         title="Live house telemetry"
         description="Fake (mostly) operational metrics so you know if the vibes need engineering attention."
         actions={
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 w-full sm:w-auto">
             <Button
               variant="secondary"
               onClick={() => {
                 metrics.forEach((m) => setValue(m.id, Math.round(60 + Math.random() * 40)));
                 toast.success("Status randomized");
               }}
+              className="flex-1 sm:flex-none"
             >
               <Wand2 className="h-4 w-4" /> Randomize
             </Button>
@@ -59,6 +60,7 @@ export default function OpsPage() {
                 reset();
                 toast("Reset to defaults");
               }}
+              className="flex-1 sm:flex-none"
             >
               <RotateCcw className="h-4 w-4" /> Reset
             </Button>
@@ -77,13 +79,13 @@ export default function OpsPage() {
             style={{ background: sentiment.color }}
           />
           <div className="relative flex items-end justify-between flex-wrap gap-3">
-            <div>
+            <div className="min-w-0">
               <div className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/45">
                 Composite vibe score
               </div>
-              <div className="mt-2 text-4xl font-semibold tracking-tight">
+              <div className="mt-2 text-3xl sm:text-4xl font-semibold tracking-tight">
                 <span style={{ color: sentiment.color }}>{avg}</span>
-                <span className="text-white/35 text-xl">/100</span>
+                <span className="text-white/35 text-lg sm:text-xl">/100</span>
               </div>
               <Badge variant={sentiment.tone} className="mt-2">
                 {sentiment.label}
@@ -91,7 +93,7 @@ export default function OpsPage() {
             </div>
             <div className="text-right">
               <div className="text-[11px] text-white/45">Tracking</div>
-              <div className="text-lg font-semibold text-white">{metrics.length}</div>
+              <div className="text-base sm:text-lg font-semibold text-white">{metrics.length}</div>
               <div className="text-[11px] text-white/45">live indicators</div>
             </div>
           </div>

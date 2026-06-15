@@ -34,9 +34,13 @@ export default function DashboardPage() {
         title="Dashboard"
         description="See who's on duty, what's next, and how the house is feeling today."
         actions={
-          <Button variant="secondary" onClick={() => setCommandOpen(true)}>
+          <Button
+            variant="secondary"
+            onClick={() => setCommandOpen(true)}
+            className="w-full sm:w-auto"
+          >
             <Command className="h-4 w-4" /> Quick search
-            <kbd className="ml-1 text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/[0.06] border border-white/[0.08]">
+            <kbd className="ml-1 hidden sm:inline-flex text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/[0.06] border border-white/[0.08]">
               ⌘K
             </kbd>
           </Button>
